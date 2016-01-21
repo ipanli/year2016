@@ -1,0 +1,52 @@
+#load{
+    position: relative;
+    color: #333;
+    margin: 0px auto;
+    width: 100%;
+}
+.container{
+    position: relative;
+    max-width: 600px;
+    height: 500px;
+    text-align: center;
+    margin-top: 20%;
+    overflow: hidden;
+}
+
+.border0,.border1,.border2,.border3{
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+}
+.border1{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+.border2{
+    width: 200px;
+    height: 200px;
+    margin: 49px;
+}
+.border3{
+    width: 100px;
+    height: 100px;
+    margin: 49px;
+}
+
+/* radar */
+
+.radar{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+.pointer {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 50%;
+}
