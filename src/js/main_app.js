@@ -4,7 +4,12 @@ PD(function(){
         event.preventDefault();
     });
     
-
+    if (window.DeviceMotionEvent){
+		PanshakYo();
+	}else {
+        alert('你的手机太差了，不支持摇一摇 ');
+    
+    } 
     PD(".loader-inner").fadeOut("300",function(){
         PD(".container").fadeIn().html(yuanSaoHtml());
     });
@@ -23,9 +28,15 @@ PD(function(){
                 PD(".user span").eq(index++).fadeIn(timeout).addClass("flip")
             }
         },timeout);
-    })
+    });
     
-    layerTelWind()
+    
+    
+    if(!getUserPhone()){
+        layerTelWind();
+    }
+    
+    
     
     
 });

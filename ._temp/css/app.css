@@ -18,12 +18,6 @@ input:focus {
   -webkit-tap-highlight-color: transparent;
   -webkit-user-modify: read-write-plaintext-only; }
 
-/*!
-Animate.css - http://daneden.me/animate
-Licensed under the MIT license - http://opensource.org/licenses/MIT
-
-Copyright (c) 2015 Daniel Eden
-*/
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -2331,6 +2325,12 @@ Copyright (c) 2015 Daniel Eden
   animation-name: slideOutUp; }
 
 body {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: #190A1F; }
 
 .app {
@@ -2338,7 +2338,8 @@ body {
   left: 0;
   right: 0;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  overflow: hidden; }
   .app .pacman {
     position: absolute;
     top: 50%;
@@ -2356,8 +2357,7 @@ body {
   position: relative;
   max-width: 600px;
   text-align: center;
-  padding-top: 10%;
-  overflow: hidden; }
+  padding-top: 10%; }
 
 .border0, .border1, .border2, .border3 {
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -2531,7 +2531,6 @@ body {
     overflow: hidden; }
   .userWrap .userSpan {
     position: absolute;
-    display: none;
     width: 26px;
     height: 26px;
     border-radius: 50%;

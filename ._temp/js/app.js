@@ -62,6 +62,8 @@ function readerUser(num){
                     '<img src="images/'+ num +'.jpg" width="100%">'+
                '</span>';
      
+     PD(".userWrap").append(str);
+     
      return str;
 }
 
@@ -81,20 +83,133 @@ function layerTelWind(){
         success: function(oPan){
             var cla = 'getElementsByClassName';
             oPan[cla]('submitBtn')[0].onclick = function(){
-                console.log(pagei)
+               var phone = PD('.telInput').val();
+                
+                if(!checkPhone(phone)){
+                    PL.open({
+                        time: 2,
+                        content:'手机号不正确'
+                    })
+                    return false;
+                }
+                
+                console.log("通过")
+                savePhone(phone);
+                
             }
+            
+            PD(".telInput").focus();
+            
+            PD(".telWrap").addClass("animated shake");
+            
+            setTimeout(function(){
+                PD(".telWrap").removeClass("animated shake");
+            },1000)
         }
     });
  
  
 }
+
+//手机号验证
+
+function checkPhone(tel){ 
+    if(!(/^1[3|4|5|7|8]\d{9}$/.test(tel))){ 
+        return false; 
+    } 
+    
+    return tel;
+}
+
+
+
+function PanshakYo(){
+        var speed = 250;
+		var audio = document.getElementById("shakemusic");
+        var noPhone = document.getElementById("nophone");
+		var openAudio = document.getElementById("openmusic");
+		var x = t = z = lastX = lastY = lastZ = 0;
+		window.addEventListener('devicemotion',
+			function () {
+                     
+
+                    var acceleration = event.accelerationIncludingGravity;
+                    x = acceleration.x;
+                    y = acceleration.y;
+                    if (Math.abs(x - lastX) > speed || Math.abs(y - lastY) > speed) {
+                        
+                         if(!getUserPhone()){
+                               
+                                PD(".telWrap").addClass("animated shake");  
+                                    
+                                setTimeout(function(){   
+                                    PD(".telWrap").removeClass("animated shake");
+                                }, 1500);
+                             
+                             return;
+                         }
+                         
+                        
+                        audio.play();             
+                        setTimeout(function(){   
+                            audio.pause();
+                            openAudio.play();
+                            
+                        }, 1500);
+                    };
+                    lastX = x;
+                    lastY = y;
+                    
+
+                
+				
+			},false);
+  }
+  
+ // 手机输入后
+ 
+ function savePhone(phone){
+     
+     
+    var loc = localStorage.setItem('userPhone', phone);	
+     
+    PL.closeAll();
+     
+    return loc;
+ }
+ 
+ // 获取抽奖用户手机号
+ 
+ function getUserPhone(){
+     
+   var phone = localStorage.getItem('userPhone');
+   
+   if(phone){
+       return phone
+   }
+   
+   return false;
+ }
+ 
+ // 定时器模拟追加在线人数
+ function UserOnloneAdd(){
+     
+     var num = GetRandomNum(0,9);
+     readerUser(num);     
+     
+ }
 PD(function(){
     // touchstart
     PD('body,html').on('touchmove', function (event) {
         event.preventDefault();
     });
     
-
+    if (window.DeviceMotionEvent){
+		PanshakYo();
+	}else {
+        alert('你的手机太差了，不支持摇一摇 ');
+    
+    } 
     PD(".loader-inner").fadeOut("300",function(){
         PD(".container").fadeIn().html(yuanSaoHtml());
     });
@@ -113,9 +228,15 @@ PD(function(){
                 PD(".user span").eq(index++).fadeIn(timeout).addClass("flip")
             }
         },timeout);
-    })
+    });
     
-    layerTelWind()
+    
+    
+    if(!getUserPhone()){
+        layerTelWind();
+    }
+    
+    
     
     
 });
