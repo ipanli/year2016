@@ -4,6 +4,20 @@
   margin: 0px;
   box-sizing: border-box; }
 
+input {
+  -webkit-appearance: none;
+  box-shadow: none;
+  background: none;
+  outline: medium;
+  border: 1px solid #999; }
+
+input:focus, textarea:focus {
+  outline: none; }
+
+input:focus {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-modify: read-write-plaintext-only; }
+
 body {
   background-color: #190A1F; }
 
@@ -29,9 +43,8 @@ body {
 .container {
   position: relative;
   max-width: 600px;
-  height: 500px;
   text-align: center;
-  margin-top: 20%;
+  padding-top: 10%;
   overflow: hidden; }
 
 .border0, .border1, .border2, .border3 {
@@ -222,6 +235,34 @@ body {
   color: #fff;
   font-size: 14px;
   outline: none; }
+
+.telWrap {
+  padding: 10px;
+  font-size: 14px; }
+  .telWrap .p1 {
+    color: #190A1F;
+    font-size: 14px;
+    padding-bottom: 10px; }
+  .telWrap .telInput {
+    position: relative;
+    display: block;
+    font-size: 14px;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px; }
+  .telWrap .submitBtn {
+    border-radius: 5px;
+    display: block;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    background-color: #190A1F;
+    color: #fff;
+    font-size: 14px;
+    outline: none; }
 
 @-webkit-keyframes rotate_pacman_half_up {
   0% {

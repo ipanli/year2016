@@ -1,5 +1,6 @@
 PD(function(){
-    PD('body,html').on('touchmove touchstart', function (event) {
+    // touchstart
+    PD('body,html').on('touchmove', function (event) {
         event.preventDefault();
     });
     
@@ -23,6 +24,8 @@ PD(function(){
             }
         },timeout);
     })
+    
+    layerTelWind()
     
     
 });

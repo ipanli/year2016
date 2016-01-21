@@ -8,3 +8,36 @@
     font-size: 14px;
     outline: none;
 }
+
+.telWrap{
+    padding: 10px;
+    font-size: 14px;
+    .p1{
+       color: #190A1F;
+       font-size: 14px;
+       padding-bottom: 10px;
+    }
+   .telInput{
+        position: relative;
+        display: block;
+        font-size: 14px;
+        height: 40px;
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    } 
+    .submitBtn{
+        border-radius: 5px;
+        display: block;
+        height: 40px;
+        width: 100%;
+        text-align: center;
+        line-height: 40px;
+        text-decoration: none;
+        background-color: #190A1F;
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+     }
+}
+

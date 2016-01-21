@@ -60,3 +60,27 @@ function readerUser(num){
      
      return str;
 }
+
+//弹出输入手机号
+
+
+function layerTelWind(){
+    
+    var tel = '<div class="telWrap"><p class="p1">输入手机号,摇出大奖</p><input type="tel" class="telInput" placeholder="手机号">'+
+                '<a href="#" class="submitBtn">确认</a></div>';
+    
+     var pagei = PL.open({
+        type: 1, //1代表页面层
+        content: tel,
+        shadeClose:false,
+        style: 'width:300px; height:160px; border:none;',
+        success: function(oPan){
+            var cla = 'getElementsByClassName';
+            oPan[cla]('submitBtn')[0].onclick = function(){
+                console.log(pagei)
+            }
+        }
+    });
+ 
+ 
+}

@@ -1,0 +1,15 @@
+ input {
+  -webkit-appearance:none;
+  box-shadow:none;
+  background:none;
+  outline:medium;
+  border: 1px solid #999;
+ }
+
+input:focus, textarea:focus {
+    outline: none;
+}
+input:focus{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-user-modify:read-write-plaintext-only;
+}
