@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Panli 2016年会 摇大奖</title>
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!--去掉Windows Phone点击时的高亮效果-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="./build/css/app.min.css">
     <script src="./build/js/app.min.js"></script>
 </head>
 <body>
-<div class="app">
+<div class="app" id="app">
     <!-- 摇一摇音乐 -->
     <audio id="shakemusic" src="./build/media/red-01.mp3" style="display: none;"></audio> 
     <audio id="openmusic" src="./build/media/red-02.mp3" style="display: none;"></audio>
@@ -21,14 +23,11 @@
         <div></div>
         <div></div>
     </div>
-    <div class="foo-count-down">
-        <span class="online-user">参与人数: <i>100</i></span>
-        <span class="my-maili fr">当前卖力：<i>100</i></span>
-    </div>
+    <nav class="nav">
+        
+        
+    </nav>
 </div>
-<div class="container">
-    
-</div>
-
+<div class="container"></div>
 </body>
 </html>

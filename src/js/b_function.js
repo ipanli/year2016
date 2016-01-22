@@ -24,10 +24,59 @@ function yuanSaoHtml(){
         
 }
 
+
+function getElementsClass(classnames){ 
+    var classobj= new Array();//定义数组 
+    
+    var classint=0;//定义数组的下标 
+    
+    var tags=document.getElementsByTagName("*");//获取HTML的所有标签 
+    
+    for(var i in tags){//对标签进行遍历 
+    
+        if(tags[i].nodeType==1){//判断节点类型 
+        
+            if(tags[i].getAttribute("class") == classnames){ 
+        
+                classobj[classint]=tags[i]; 
+                
+                classint++; 
+        
+            } 
+        
+        } 
+    
+    } 
+    
+    return classobj;//返回组成的数组 
+ 
+} 
+
+
 //渲染倒计时
 function RederCountDown(){
+    return 0;
+}
+
+//渲染底部信息
+
+function ReaderFooter(){
     
-  
+    var str = '<div class="foo-count-down">'+
+                  '  <!--<span class="online-user">参与人数: <i>100</i></span>'+
+                  '  <span class="my-maili fr">当前卖力：<i>100</i></span>-->'+
+                '</div>';
+    
+    PD("#app").append(str);
+    
+}
+
+//渲染侧边栏
+
+function ReaderNavTab(){
+    
+    
+    
     
     
 }
@@ -128,7 +177,7 @@ function checkPhone(tel){
 
 
 function PanshakYo(){
-        var speed = 250;
+        var speed = 25;
 		var audio = document.getElementById("shakemusic");
         var noPhone = document.getElementById("nophone");
 		var openAudio = document.getElementById("openmusic");
@@ -153,6 +202,9 @@ function PanshakYo(){
                              return;
                          }
                          
+                        var maili = Math.abs(lastX.toFixed(0))+Math.abs(lastY.toFixed(0 ));
+                        
+                        PD(".foo-count-down").append(maili+',')
                         
                         audio.play();             
                         setTimeout(function(){   
@@ -202,6 +254,51 @@ function PanshakYo(){
      readerUser(num);     
      
  }
+ 
+ 
+ // 卖力值累计
+ 
+ function mailiVal(num){
+     
+     var old =  localStorage.getItem('maili'),
+         Val = num;
+    
+     
+     if(old){ 
+       Val = old+num;
+     }
+     
+     localStorage.setItem('maili',Val);  
+     
+     return Val;
+ }
+ // 获取卖力值统计
+ function mailiCount(){
+     
+      var old =  localStorage.getItem('maili');
+
+         if(!old){
+            return 0;             
+         }
+         
+       var val = old.split(",");
+       
+       if(!val){
+         return 0;
+       }
+       
+       var count = 0;
+       
+       for(var i=0;i<val.length-1;i++){
+           
+           count +=  Number(val[i]);
+           
+       }
+       
+        return count;
+     
+ }
+ 
  
  //统计在线人数
  
