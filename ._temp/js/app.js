@@ -102,8 +102,20 @@ function ReaderNavTab(){
     
     
     
+    var str = '<nav class="nav">'+
+        '<h6 class="my-title">我的信息</h6>'+
+         '<div class="myInfo">'+
+          '   <p class="p1">手机号码 : <input class="myPhone" readonly value="150000003499"></input></p>'+
+           '  <p class="p1">中奖信息 : <span class="winningInfo">...</span></p>'+
+        ' </div>'+
+         '<div class="myLout">'+
+          '   <a href="javascript:void(0);">切换账户</a>'+
+        ' </div>'+
+    '</nav>'; 
     
     
+    
+    PD("#app").append(str);
 }
 
 //随机数 
