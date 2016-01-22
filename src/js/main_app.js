@@ -4,6 +4,7 @@ PD(function(){
         event.preventDefault();
     });
     
+    
     if (window.DeviceMotionEvent){
 		PanshakYo();
 	}else {
@@ -13,6 +14,22 @@ PD(function(){
     PD(".loader-inner").fadeOut("300",function(){
         PD(".container").fadeIn().html(yuanSaoHtml());
     });
+    
+    
+    PD("#audio_btn").click(function () {
+			var music = document.getElementById("music"),
+            _t = PD(this);
+			if (music.paused) {
+				music.play();
+                _t.removeClass('pause').addClass('paly')
+				
+			} else {
+				music.pause();
+                  _t.removeClass('paly').addClass('pause')
+			
+			}
+	});
+    
     
     PD(".btn").click(function () {
         PD(".pointer").addClass("pointerAnim");  //添加雷达旋转动画

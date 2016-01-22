@@ -2346,6 +2346,22 @@ body {
   right: 0;
   background-color: #190A1F; }
 
+#audio_btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 999999;
+  width: 24px;
+  height: 25px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%; }
+
+.play {
+  background-image: url("../images/play.png"); }
+
+.pause {
+  background-image: url("../images/pause.png"); }
+
 .app {
   position: absolute;
   left: 0;
