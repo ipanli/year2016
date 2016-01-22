@@ -5,7 +5,7 @@ function barrageInit() {
         
         var _t = PD(this);
         
-        var _left = PD(window).width() - _t.width()+220;
+        var _left = PD(window).width() - _t.width()+300;
         var _height = PD(window).height();
         
         _top = _top + 36;
