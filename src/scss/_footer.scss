@@ -1,0 +1,16 @@
+
+.foo-count-down{
+    position: absolute;
+    left: 0;
+    bottom:0;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: url(../img/bg_countdown.jpg) no-repeat;
+    background-size: 100% 100%;
+    color: #fff;
+    padding: 0 10px;
+    span{
+        
+    }
+}

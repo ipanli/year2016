@@ -24,6 +24,14 @@ function yuanSaoHtml(){
         
 }
 
+//渲染倒计时
+function RederCountDown(){
+    
+  
+    
+    
+}
+
 //随机数 
 
 function GetRandomNum(Min,Max){   
@@ -37,12 +45,15 @@ function GetRandomNum(Min,Max){
 
 function randomPosition(){
     
-   
-    var topN = GetRandomNum(1,100),
-        leftN = GetRandomNum(1,100);    
+    var windW = PD(window).width(),
+        loadH = PD(".userWrap").height(),
+        offsetL = PD(".userWrap").offset().left;
+     
+    var topN = GetRandomNum(-10,loadH),
+        leftN = GetRandomNum(0-offsetL,windW-offsetL-30);    
     return {
-        top: topN+'%',
-        left: leftN+'%'
+        top: topN+'px',
+        left: leftN+'px'
     }
 }
 
@@ -194,9 +205,35 @@ function PanshakYo(){
  
  //统计在线人数
  
- function  UserOnlone(){
+ function  UserOnloneCount(){
      
      var length = PD(".userWrap span").length;
      
      console.log(length);
  }
+ 
+ 
+ //用户接口
+ function UsersApi(){
+     
+     PD.ajax({
+        type:"GET",    
+        url: "http://172.20.6.163:8080/users",
+        dataType:"json",
+        success:function (result) {
+            console.log(JSON.stringify(result));
+        },
+        error:function (result, status) {
+        //处理错误
+            console.log(result);
+        }
+    });
+     
+     
+ }
+ 
+ 
+
+
+ 
+ 

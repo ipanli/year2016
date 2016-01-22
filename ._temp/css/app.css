@@ -4,6 +4,13 @@
   margin: 0px;
   box-sizing: border-box; }
 
+body {
+  font-size: 14px;
+  font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif; }
+
+i {
+  font-style: normal; }
+
 input {
   -webkit-appearance: none;
   box-shadow: none;
@@ -17,6 +24,9 @@ input:focus, textarea:focus {
 input:focus {
   -webkit-tap-highlight-color: transparent;
   -webkit-user-modify: read-write-plaintext-only; }
+
+.fr {
+  float: right; }
 
 .animated {
   -webkit-animation-duration: 1s;
@@ -2347,19 +2357,20 @@ body {
     margin-top: -30px;
     margin-left: -30px; }
 
-#loadYuan {
-  position: relative;
-  color: #333;
-  margin: 0px auto;
-  width: 100%; }
-
 .container {
   position: relative;
   max-width: 600px;
   text-align: center;
   padding-top: 26px;
   padding-bottom: 50px;
-  overflow-y: hidden; }
+  overflow-y: hidden;
+  margin: 0px auto; }
+
+#loadYuan {
+  position: relative;
+  color: #333;
+  margin: 0px auto;
+  width: 100%; }
 
 .border0, .border1, .border2, .border3 {
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -2691,3 +2702,15 @@ body {
   transform: translate(0, -6.25px);
   top: 25px;
   left: 100px; }
+
+.foo-count-down {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background: url(../img/bg_countdown.jpg) no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+  padding: 0 10px; }

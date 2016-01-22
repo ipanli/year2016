@@ -31,11 +31,15 @@ PD(function(){
     });
     
     
-    
     if(!getUserPhone()){
         layerTelWind();
     }
     
+    
+    
+//    var addSet = setInterval(function(){
+//         UserOnloneAdd()
+//     },500)
     
     
     
