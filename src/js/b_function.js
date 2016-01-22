@@ -5,9 +5,6 @@ function yuanSaoHtml(){
                     '<div class="border1">'+
                     '   <div class="pointer pointerAnim"></div>'+
                     '  <div class="userWrap">'+
-                    '     <span class="userSpan shadow">'+
-                        '        <img src="images/1.jpg" width="100%">'+
-                        '   </span>'+
                         '</div>'+
                         '<div class="border2">'+
                         '   <div class="border3">'+
@@ -193,4 +190,13 @@ function PanshakYo(){
      var num = GetRandomNum(0,9);
      readerUser(num);     
      
+ }
+ 
+ //统计在线人数
+ 
+ function  UserOnlone(){
+     
+     var length = PD(".userWrap span").length;
+     
+     console.log(length);
  }

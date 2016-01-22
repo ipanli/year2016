@@ -2357,7 +2357,9 @@ body {
   position: relative;
   max-width: 600px;
   text-align: center;
-  padding-top: 10%; }
+  padding-top: 26px;
+  padding-bottom: 50px;
+  overflow-y: hidden; }
 
 .border0, .border1, .border2, .border3 {
   border: 1px solid rgba(255, 255, 255, 0.3);
