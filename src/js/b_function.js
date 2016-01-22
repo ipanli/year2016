@@ -10,7 +10,7 @@ function yuanSaoHtml(){
                         '   <div class="border3">'+
                         '      <div class="radar">'+
                         '         <span class="avatar">'+
-                            '            <img src="images/10.jpg" width="100%">'+
+                            '            <img src="build/images/10.jpg" width="100%">'+
                             '       </span>'+
                             '  </div>'+
                             '</div>'+
