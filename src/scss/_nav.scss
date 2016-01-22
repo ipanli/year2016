@@ -2,11 +2,15 @@
     position: absolute;
     z-index: 10;
     top: 0;
-    left: 0;
+    left: -200px;
     width:200px;
-    bottom: 30px;
+    bottom: 40px;
     background-color: rgba(22, 10, 29, 0.95);
     color: #FFF;
+    transition: left .6s;
+    -moz-transition: left .6s;	
+    -webkit-transition: left .6s;	
+    -o-transition: left .6s;
     .my-title{
         padding: 10px 0;
         font-size: 14px;
@@ -37,4 +41,7 @@
             text-decoration: none;
         }
     }
+}
+.nav-show{
+   left:0; 
 }

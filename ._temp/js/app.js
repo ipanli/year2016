@@ -83,16 +83,49 @@ function RederCountDown(){
     return 0;
 }
 
+// 初始化
+function AppInit(){
+    
+   
+    ReaderFooter();
+     
+    ReaderNavTab();
+    
+    
+}
 //渲染底部信息
 
 function ReaderFooter(){
     
+   var mailiV =  mailiCount(),
+       onlineU = 0;
+    
+    
     var str = '<div class="foo-count-down">'+
-                  '  <!--<span class="online-user">参与人数: <i>100</i></span>'+
-                  '  <span class="my-maili fr">当前卖力：<i>100</i></span>-->'+
+                  '  <span class="">参与人数: <i class="online-user">'+ onlineU +'</i></span>'+
+                  '  <span class="fr">当前卖力值：<i class="my-maili">'+ mailiV +'</i></span>'+
                 '</div>';
     
     PD("#app").append(str);
+    
+    
+    if(PD('.foo-count-down')[0]){
+         var hammertime = new Hammer(PD('#app')[0],{
+            domEvents: true
+            });
+            
+            hammertime.on('swiperight', function(ev) {
+                console.log(ev);
+                PD("#nav").addClass("nav-show");
+            });
+            
+            hammertime.on('swipeleft', function(ev) {
+                console.log(ev);
+                PD("#nav").removeClass("nav-show");
+            });
+    }
+    
+    
     
 }
 
@@ -100,12 +133,16 @@ function ReaderFooter(){
 
 function ReaderNavTab(){
     
+    var phone = '';
     
+    if(getUserPhone()){
+       phone = getUserPhone();
+    }
     
-    var str = '<nav class="nav">'+
+    var str = '<nav class="nav" id="nav">'+
         '<h6 class="my-title">我的信息</h6>'+
          '<div class="myInfo">'+
-          '   <p class="p1">手机号码 : <input class="myPhone" readonly value="150000003499"></input></p>'+
+          '   <p class="p1">手机号码 : <input class="myPhone" readonly value="'+ phone +'"></input></p>'+
            '  <p class="p1">中奖信息 : <span class="winningInfo">...</span></p>'+
         ' </div>'+
          '<div class="myLout">'+
@@ -113,10 +150,31 @@ function ReaderNavTab(){
         ' </div>'+
     '</nav>'; 
     
-    
-    
     PD("#app").append(str);
+    
+    PD("#app").on("click",".myLout",function(){
+        UserLout();
+    })
+    
 }
+
+
+
+//切换账户
+function UserLout(){
+    
+    PL.open({
+       type:2,
+       content:""  
+    });
+    
+   localStorage.removeItem('userPhone');
+   
+   localStorage.removeItem('maili');
+
+   window.location.href = window.location.href;
+}
+
 
 //随机数 
 
@@ -149,7 +207,7 @@ function readerUser(num){
     var style = 'left:'+randomPosition().left+';top:'+randomPosition().top+';';
 
     var str = '<span class="userSpan shadow" style="'+ style +'">'+
-                    '<img src="images/'+ num +'.jpg" width="100%">'+
+                    '<img src="./build/images/'+ num +'.jpg" width="100%">'+
                '</span>';
      
      PD(".userWrap").append(str);
@@ -163,7 +221,7 @@ function readerUser(num){
 function layerTelWind(){
     
     var tel = '<div class="telWrap"><p class="p1">输入手机号,摇出大奖</p><input type="tel" class="telInput" placeholder="手机号">'+
-                '<a href="#" class="submitBtn">确认</a></div>';
+                '<a href="javascript:void(0);" class="submitBtn">确认</a></div>';
     
      var pagei = PL.open({
         type: 1, //1代表页面层
@@ -183,9 +241,11 @@ function layerTelWind(){
                     return false;
                 }
                 
-                console.log("通过")
-                savePhone(phone);
+                console.log("通过");
                 
+                PD(".myPhone").val(phone);
+                savePhone(phone);
+                AppInit();
             }
             
             PD(".telInput").focus();
@@ -219,6 +279,8 @@ function PanshakYo(){
         var noPhone = document.getElementById("nophone");
 		var openAudio = document.getElementById("openmusic");
 		var x = t = z = lastX = lastY = lastZ = 0;
+        
+        var openSw = true;
 		window.addEventListener('devicemotion',
 			function () {
                      
@@ -238,17 +300,45 @@ function PanshakYo(){
                              
                              return;
                          }
-                         
-                        var maili = Math.abs(lastX.toFixed(0))+Math.abs(lastY.toFixed(0 ));
                         
-                        PD(".foo-count-down").append(maili+',')
-                        
-                        audio.play();             
-                        setTimeout(function(){   
-                            audio.pause();
-                            openAudio.play();
+                        if(!openSw){
                             
-                        }, 1500);
+                            
+                            return false;
+                        }
+                        
+                        var maili = Math.abs(lastX.toFixed(0))+Math.abs(lastY.toFixed(0 ));
+                            openSw = false;
+                            
+                            audio.play();  
+                             
+                             
+                                    
+                            setTimeout(function(){   
+                                 audio.pause();
+                                openAudio.play();
+                                
+                                PL.open({
+                                    content: '卖力值增加:'+maili,
+                                    time: 2
+                                });
+                                
+                                mailiVal(maili,function(data){      
+                                    PD(".my-maili").text(mailiCount());  
+                                    
+                                    
+                                    setTimeout(function(){
+                                        openSw = true;
+                                    },2000);
+                                    
+                                    
+                                                              
+                                });
+        
+                            }, 1500);
+                            
+                            
+                            
                     };
                     lastX = x;
                     lastY = y;
@@ -295,19 +385,19 @@ function PanshakYo(){
  
  // 卖力值累计
  
- function mailiVal(num){
+ function mailiVal(num,call){
      
      var old =  localStorage.getItem('maili'),
          Val = num;
     
      
      if(old){ 
-       Val = old+num;
+       Val = old+','+num;
      }
      
      localStorage.setItem('maili',Val);  
      
-     return Val;
+     call(Val);
  }
  // 获取卖力值统计
  function mailiCount(){
@@ -326,7 +416,7 @@ function PanshakYo(){
        
        var count = 0;
        
-       for(var i=0;i<val.length-1;i++){
+       for(var i=0;i<val.length;i++){
            
            count +=  Number(val[i]);
            
@@ -407,18 +497,11 @@ PD(function(){
     
     if(!getUserPhone()){
         layerTelWind();
+    }else{
+        AppInit();
     }
     
-    if(PD('.foo-count-down')[0]){
-         var hammertime = new Hammer(PD('.foo-count-down')[0],{
-            domEvents: true
-            });
-            
-            hammertime.on('swiperight', function(ev) {
-                alert(ev.type)
-                    console.log(ev);
-            });
-    }
+    
     
    
     

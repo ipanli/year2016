@@ -33,18 +33,11 @@ PD(function(){
     
     if(!getUserPhone()){
         layerTelWind();
+    }else{
+        AppInit();
     }
     
-    if(PD('.foo-count-down')[0]){
-         var hammertime = new Hammer(PD('.foo-count-down')[0],{
-            domEvents: true
-            });
-            
-            hammertime.on('swiperight', function(ev) {
-                alert(ev.type)
-                    console.log(ev);
-            });
-    }
+    
     
    
     

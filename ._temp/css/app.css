@@ -2714,7 +2714,7 @@ body {
   width: 100%;
   height: 40px;
   line-height: 40px;
-  background: url(../img/bg_countdown.jpg) no-repeat;
+  background: url(../images/bg_countdown.jpg) no-repeat;
   background-size: 100% 100%;
   color: #fff;
   padding: 0 10px; }
@@ -2723,11 +2723,15 @@ body {
   position: absolute;
   z-index: 10;
   top: 0;
-  left: 0;
+  left: -200px;
   width: 200px;
-  bottom: 30px;
+  bottom: 40px;
   background-color: rgba(22, 10, 29, 0.95);
-  color: #FFF; }
+  color: #FFF;
+  transition: left .6s;
+  -moz-transition: left .6s;
+  -webkit-transition: left .6s;
+  -o-transition: left .6s; }
   .nav .my-title {
     padding: 10px 0;
     font-size: 14px;
@@ -2753,3 +2757,6 @@ body {
       text-align: center;
       color: #FFF;
       text-decoration: none; }
+
+.nav-show {
+  left: 0; }
