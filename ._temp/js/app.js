@@ -31,32 +31,25 @@ function getReandomColor() {
 }
 
 
-function yuanSaoHtml(){
+//手机号验证
+
+function checkPhone(tel){ 
+    if(!(/^1[3|4|5|7|8]\d{9}$/.test(tel))){ 
+        return false; 
+    } 
     
-      var str = '<div id="loadYuan">'+
-                    '<div class="border1">'+
-                    '   <div class="pointer pointerAnim"></div>'+
-                    '  <div class="userWrap">'+
-                        '</div>'+
-                        '<div class="border2">'+
-                        '   <div class="border3">'+
-                        '      <div class="radar">'+
-                        '         <span class="avatar">'+
-                            '            <img src="build/images/10.jpg" width="100%">'+
-                            '       </span>'+
-                            '  </div>'+
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-                    '<!--<button class="btn">使劲摇</button>-->'+
-                '</div>';
-        
-        
-        return str;
-        
+    return tel;
 }
 
+//随机数 
 
+function GetRandomNum(Min,Max){   
+    var Range = Max - Min;   
+    var Rand = Math.random();   
+    return(Min + Math.round(Rand * Range));   
+} 
+
+//get class
 function getElementsClass(classnames){ 
     var classobj= new Array();//定义数组 
     
@@ -85,6 +78,23 @@ function getElementsClass(classnames){
 } 
 
 
+
+// 生成随机位置
+
+function randomPosition(){
+    
+    var windW = PD(window).width(),
+        loadH = PD(".userWrap").height(),
+        offsetL = PD(".userWrap").offset().left;
+     
+    var topN = GetRandomNum(-10,loadH),
+        leftN = GetRandomNum(0-offsetL,windW-offsetL-30);    
+    return {
+        top: topN+'px',
+        left: leftN+'px'
+    }
+}
+
 //渲染倒计时
 function RederCountDown(){
     return 0;
@@ -98,8 +108,194 @@ function AppInit(){
      
     ReaderNavTab();
     
+    //barrageText(); 
     
 }
+
+ 
+ 
+ // 定时器模拟追加在线人数
+ function UserOnloneAdd(){
+     
+     var num = GetRandomNum(0,9);
+     readerUser(num);     
+     
+ }
+ 
+ 
+ // 卖力值累计 回调
+ 
+ function mailiVal(num,call){
+     
+     var old =  localStorage.getItem('maili'),
+         Val = num;
+    
+     
+     if(old){ 
+       Val = old+','+num;
+     }
+     
+     localStorage.setItem('maili',Val);  
+     
+     call(Val);
+ }
+
+ 
+ 
+ //统计在线人数
+ 
+ function  UserOnloneCount(){
+     
+     var length = PD(".userWrap span").length;
+     
+     console.log(length);
+ }
+ 
+ 
+
+// 测试弹幕消息
+function barrageText(){
+    
+    var msg = '哈哈你好';
+ 
+    for(var i = 0;i< 50; i++){
+        
+      barragePush(msg+i);
+        
+    }
+    
+}
+
+ //用户接口
+ function UsersApi(){
+     
+     PD.ajax({
+        type:"GET",    
+        url: "http://172.20.6.163:8080/users",
+        dataType:"json",
+        success:function (result) {
+            console.log(JSON.stringify(result));
+        },
+        error:function (result, status) {
+        //处理错误
+            console.log(result);
+        }
+    });
+     
+     
+ }
+//弹幕初始化
+function barrageInit() { 
+    var _top = 0;
+    PD("#barrage").find("div").show().each(function () {
+        
+        var _t = PD(this);
+        
+        var _left = PD(window).width() - _t.width()+220;
+        var _height = PD(window).height();
+        
+        _top = _top + 36;
+        if (_top >= _height - 120) {  
+            _top = 40;
+        }
+        _t.css({left: _left, top: _top});
+        var time = 10000;
+        if (_t.index() % 2 == 0) {
+            time = 12000;
+        }
+        if (_t.index() % 3 == 0) {
+            time = 14000;
+        }
+        if (_t.index() % 4 == 0) {
+            time = 16000;
+        }
+        if (_t.index() % 5 == 0) {
+            time = 18000;
+        }
+        if (_t.index() % 7 == 0) {
+            time = 20000;
+        }
+        if (_t.index() % 8 == 0) {
+            time = 23000;
+        }
+        _t.animate({left: "-" + _left + "px"}, time, function () {
+            
+            _t.remove();
+            
+        });
+    });
+}
+
+
+ 
+//弹幕文字推送
+
+function barragePush(msg){
+  
+  var color = getReandomColor(),
+      size = GetRandomNum(10,18);
+  
+  var str = '<div style="color:'+ color +';font-size:'+ size +'px;">'+ msg +'</div>';
+  
+  PD("#barrage").append(str);  
+  
+  
+  barrageInit();
+    
+}
+ // 获取卖力值统计
+ function mailiCount(){
+     
+      var old =  localStorage.getItem('maili');
+
+         if(!old){
+            return 0;             
+         }
+         
+       var val = old.split(",");
+       
+       if(!val){
+         return 0;
+       }
+       
+       var count = 0;
+       
+       for(var i=0;i<val.length;i++){
+           
+           count +=  Number(val[i]);
+           
+       }
+       
+        return count;
+     
+ }
+//渲染原
+function yuanSaoHtml(){
+    
+      var str = '<div id="loadYuan">'+
+                    '<div class="border1">'+
+                    '   <div class="pointer pointerAnim"></div>'+
+                    '  <div class="userWrap">'+
+                        '</div>'+
+                        '<div class="border2">'+
+                        '   <div class="border3">'+
+                        '      <div class="radar">'+
+                        '         <span class="avatar">'+
+                            '            <img src="build/images/10.jpg" width="100%">'+
+                            '       </span>'+
+                            '  </div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                    '<!--<button class="btn">使劲摇</button>-->'+
+                '</div>';
+        
+        
+        return str;
+        
+}
+
+
 //渲染底部信息
 
 function ReaderFooter(){
@@ -133,8 +329,8 @@ function ReaderFooter(){
     }
     
     
-    
 }
+
 
 //渲染侧边栏
 
@@ -167,63 +363,8 @@ function ReaderNavTab(){
 
 
 
-//切换账户
-function UserLout(){
-    
-    PL.open({
-       type:2,
-       content:""  
-    });
-    
-   localStorage.removeItem('userPhone');
-   
-   localStorage.removeItem('maili');
 
-   window.location.href = window.location.href;
-}
-
-
-//随机数 
-
-function GetRandomNum(Min,Max){   
-    var Range = Max - Min;   
-    var Rand = Math.random();   
-    return(Min + Math.round(Rand * Range));   
-} 
-
-
-// 生成随机位置
-
-function randomPosition(){
-    
-    var windW = PD(window).width(),
-        loadH = PD(".userWrap").height(),
-        offsetL = PD(".userWrap").offset().left;
-     
-    var topN = GetRandomNum(-10,loadH),
-        leftN = GetRandomNum(0-offsetL,windW-offsetL-30);    
-    return {
-        top: topN+'px',
-        left: leftN+'px'
-    }
-}
-
-//生成头像 手机尾号 num
-function readerUser(num){
-    
-    var style = 'left:'+randomPosition().left+';top:'+randomPosition().top+';';
-
-    var str = '<span class="userSpan shadow" style="'+ style +'">'+
-                    '<img src="./build/images/'+ num +'.jpg" width="100%">'+
-               '</span>';
-     
-     PD(".userWrap").append(str);
-     
-     return str;
-}
-
-//弹出输入手机号
-
+//渲染 弹出输入手机号
 
 function layerTelWind(){
     
@@ -268,18 +409,7 @@ function layerTelWind(){
  
 }
 
-//手机号验证
-
-function checkPhone(tel){ 
-    if(!(/^1[3|4|5|7|8]\d{9}$/.test(tel))){ 
-        return false; 
-    } 
-    
-    return tel;
-}
-
-
-
+//摇一摇事件
 function PanshakYo(){
         var speed = 25;
 		var audio = document.getElementById("shakemusic");
@@ -355,18 +485,6 @@ function PanshakYo(){
 				
 			},false);
   }
-  
- // 手机输入后
- 
- function savePhone(phone){
-     
-     
-    var loc = localStorage.setItem('userPhone', phone);	
-     
-    PL.closeAll();
-     
-    return loc;
- }
  
  // 获取抽奖用户手机号
  
@@ -381,94 +499,46 @@ function PanshakYo(){
    return false;
  }
  
- // 定时器模拟追加在线人数
- function UserOnloneAdd(){
+  // 手机输入后
+ 
+ function savePhone(phone){
+    var loc = localStorage.setItem('userPhone', phone);	
      
-     var num = GetRandomNum(0,9);
-     readerUser(num);     
+    PL.closeAll();
      
+    return loc;
  }
  
  
- // 卖力值累计
- 
- function mailiVal(num,call){
-     
-     var old =  localStorage.getItem('maili'),
-         Val = num;
+ //切换账户
+function UserLout(){
     
-     
-     if(old){ 
-       Val = old+','+num;
-     }
-     
-     localStorage.setItem('maili',Val);  
-     
-     call(Val);
- }
- // 获取卖力值统计
- function mailiCount(){
-     
-      var old =  localStorage.getItem('maili');
-
-         if(!old){
-            return 0;             
-         }
-         
-       var val = old.split(",");
-       
-       if(!val){
-         return 0;
-       }
-       
-       var count = 0;
-       
-       for(var i=0;i<val.length;i++){
-           
-           count +=  Number(val[i]);
-           
-       }
-       
-        return count;
-     
- }
- 
- 
- //统计在线人数
- 
- function  UserOnloneCount(){
-     
-     var length = PD(".userWrap span").length;
-     
-     console.log(length);
- }
- 
- 
- //用户接口
- function UsersApi(){
-     
-     PD.ajax({
-        type:"GET",    
-        url: "http://172.20.6.163:8080/users",
-        dataType:"json",
-        success:function (result) {
-            console.log(JSON.stringify(result));
-        },
-        error:function (result, status) {
-        //处理错误
-            console.log(result);
-        }
+    PL.open({
+       type:2,
+       content:""  
     });
+    
+   localStorage.removeItem('userPhone');
+   
+   localStorage.removeItem('maili');
+
+   window.location.href = window.location.href;
+}
+
+
+//生成头像 手机尾号 num
+function readerUser(num){
+    
+    var style = 'left:'+randomPosition().left+';top:'+randomPosition().top+';';
+
+    var str = '<span class="userSpan shadow" style="'+ style +'">'+
+                    '<img src="./build/images/'+ num +'.jpg" width="100%">'+
+               '</span>';
      
+     PD(".userWrap").append(str);
      
- }
- 
- 
-
-
- 
- 
-
+     return str;
+}
 PD(function(){
     // touchstart
     PD('body,html').on('touchmove', function (event) {

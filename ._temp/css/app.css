@@ -2776,3 +2776,17 @@ body {
 
 .nav-show {
   left: 0; }
+
+.barrage-wrap {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+  .barrage-wrap div {
+    width: 200px;
+    position: absolute;
+    display: none; }
