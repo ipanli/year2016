@@ -278,7 +278,7 @@ $(function(){
             ctx.beginPath();
             ctx.strokeStyle = averageColorStyles(i_dot, j_dot);
             ctx.moveTo(i_dot.x, i_dot.y);
-            ctx.lineTo(j_dot.x, j_dot.y);
+           // ctx.lineTo(j_dot.x, j_dot.y);
             ctx.stroke();
             ctx.closePath();
           }
@@ -303,15 +303,15 @@ $(function(){
     requestAnimationFrame(animateDots);	
   }
 
-  $('canvas').on('mousemove', function(e){
-    mousePosition.x = e.pageX;
-    mousePosition.y = e.pageY;
-  });
+//   $('canvas').on('mousemove', function(e){
+//     mousePosition.x = e.pageX;
+//     mousePosition.y = e.pageY;
+//   });
 
-  $('canvas').on('mouseleave', function(e){
-    mousePosition.x = canvas.width / 2;
-    mousePosition.y = canvas.height / 2;
-  });
+//   $('canvas').on('mouseleave', function(e){
+//     mousePosition.x = canvas.width / 2;
+//     mousePosition.y = canvas.height / 2;
+//   });
 
   createDots();
   requestAnimationFrame(animateDots);	
