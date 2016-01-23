@@ -1,4 +1,6 @@
-$(function(){
+
+// 星球点点
+function  xingqiuCan(){
   var canvas = document.querySelector('canvas'),
       ctx = canvas.getContext('2d')
   canvas.width = window.innerWidth;
@@ -130,16 +132,17 @@ $(function(){
     requestAnimationFrame(animateDots);	
   }
 
-//   $('canvas').on('mousemove', function(e){
+//   PD('canvas').on('mousemove', function(e){
 //     mousePosition.x = e.pageX;
 //     mousePosition.y = e.pageY;
 //   });
 
-//   $('canvas').on('mouseleave', function(e){
+//   PD('canvas').on('mouseleave', function(e){
 //     mousePosition.x = canvas.width / 2;
 //     mousePosition.y = canvas.height / 2;
 //   });
 
   createDots();
   requestAnimationFrame(animateDots);	
-});
+}; 
+

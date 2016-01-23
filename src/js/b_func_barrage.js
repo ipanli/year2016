@@ -57,3 +57,13 @@ function barragePush(msg){
   barrageInit();
     
 }
+
+//发送提交
+function sedInputMsg(){
+  var msg  = PD("#reply-write").val();
+  
+   
+    barragePush(msg);
+    
+    
+}

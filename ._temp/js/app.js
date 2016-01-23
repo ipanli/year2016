@@ -171,7 +171,19 @@ function barragePush(msg){
   barrageInit();
     
 }
-$(function(){
+
+//发送提交
+function sedInputMsg(){
+  var msg  = PD("#reply-write").val();
+  
+   
+    barragePush(msg);
+    
+    
+}
+
+// 星球点点
+function  xingqiuCan(){
   var canvas = document.querySelector('canvas'),
       ctx = canvas.getContext('2d')
   canvas.width = window.innerWidth;
@@ -303,19 +315,21 @@ $(function(){
     requestAnimationFrame(animateDots);	
   }
 
-//   $('canvas').on('mousemove', function(e){
+//   PD('canvas').on('mousemove', function(e){
 //     mousePosition.x = e.pageX;
 //     mousePosition.y = e.pageY;
 //   });
 
-//   $('canvas').on('mouseleave', function(e){
+//   PD('canvas').on('mouseleave', function(e){
 //     mousePosition.x = canvas.width / 2;
 //     mousePosition.y = canvas.height / 2;
 //   });
 
   createDots();
   requestAnimationFrame(animateDots);	
-});
+}; 
+
+
  // 获取卖力值统计
  function mailiCount(){
      
@@ -437,7 +451,7 @@ function ReaderNavTab(){
     
     PD("body").append(str);
     
-    PD("body").on("click",".myLout",function(){
+    PD("body").on("touchend",".myLout",function(){
         UserLout();
     })
     
@@ -489,6 +503,30 @@ function layerTelWind(){
     });
  
  
+}
+
+
+//渲染弹幕输入界面
+
+function ReaderBarrage(){
+    
+    var str  = '<div class="post-barrage">'+
+                '<div class="input">'+
+                 '<input id="reply-write" name="content" type="text" value="" placeholder="输入弹幕文字">'+
+                 '</div>'+
+                 '<div class="send-btn-wrap">'+
+                 ' <a class="send-btn">发射</a>'+
+                 '</div>'+
+               ' </div>';
+    
+    
+    PD("body").append(str);
+    
+    PD("body").on("touchend",".send-btn",function(){
+        sedInputMsg();
+    })
+    
+    
 }
 
 //摇一摇事件

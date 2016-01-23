@@ -12,3 +12,26 @@
     padding: 0 10px;
     
 }
+
+
+.post-barrage{
+    position: relative;
+    .input{
+       display: block;
+       height: 35px;
+       padding: 0 60px 0 10px; 
+    }
+    .send-btn-wrap{
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color:#6731D2;
+        color:#fff;
+        width: 60px;
+        height: 35px;
+        display: inline-block;
+        text-align: center;
+        line-height: 35px;
+        cursor:pointer;
+    }
+}

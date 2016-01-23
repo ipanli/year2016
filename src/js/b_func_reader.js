@@ -93,7 +93,7 @@ function ReaderNavTab(){
     
     PD("body").append(str);
     
-    PD("body").on("click",".myLout",function(){
+    PD("body").on("touchend",".myLout",function(){
         UserLout();
     })
     
@@ -145,4 +145,28 @@ function layerTelWind(){
     });
  
  
+}
+
+
+//渲染弹幕输入界面
+
+function ReaderBarrage(){
+    
+    var str  = '<div class="post-barrage">'+
+                '<div class="input">'+
+                 '<input id="reply-write" name="content" type="text" value="" placeholder="输入弹幕文字">'+
+                 '</div>'+
+                 '<div class="send-btn-wrap">'+
+                 ' <a class="send-btn">发射</a>'+
+                 '</div>'+
+               ' </div>';
+    
+    
+    PD("body").append(str);
+    
+    PD("body").on("touchend",".send-btn",function(){
+        sedInputMsg();
+    })
+    
+    
 }
