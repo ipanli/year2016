@@ -10,7 +10,16 @@ function yuanSaoHtml(){
                         '   <div class="border3">'+
                         '      <div class="radar">'+
                         '         <span class="avatar">'+
-                            '            <img src="build/images/10.jpg" width="100%">'+
+                            '         <div class="paopao" id="paopaoU">'+
+                                      '          <div class="chewing">'+
+                                       '         <div class="eye left"><span></span></div>'+
+                                        '        <div class="eye right"><span></span></div>'+
+                                         '       <div class="mounth"></div>'+
+                                          '      <div class="arm left"></div>'+
+                                           '     <div class="arm right"></div>'+
+                                            '    </div>'+
+                                             '   <div class="shadow"></div>'+
+                                      '  </div>'+
                             '       </span>'+
                             '  </div>'+
                             '</div>'+
@@ -82,9 +91,9 @@ function ReaderNavTab(){
         ' </div>'+
     '</nav>'; 
     
-    PD("#app").append(str);
+    PD("body").append(str);
     
-    PD("#app").on("click",".myLout",function(){
+    PD("body").on("click",".myLout",function(){
         UserLout();
     })
     

@@ -2368,7 +2368,8 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  background-color: #190A1F; }
   .app .pacman {
     position: absolute;
     top: 50%;
@@ -2544,11 +2545,7 @@ body {
   display: inline-block;
   width: 45px;
   height: 45px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-top: 25px;
-  box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.7); }
+  margin-top: 25px; }
 
 .userWrap {
   position: absolute;
@@ -2744,10 +2741,10 @@ body {
   bottom: 40px;
   background-color: rgba(22, 10, 29, 0.95);
   color: #FFF;
-  transition: left .6s;
-  -moz-transition: left .6s;
-  -webkit-transition: left .6s;
-  -o-transition: left .6s; }
+  transition: all .22s;
+  -moz-transition: left .22s;
+  -webkit-transition: left .22s;
+  -o-transition: left .22s; }
   .nav .my-title {
     padding: 10px 0;
     font-size: 14px;
@@ -2760,6 +2757,10 @@ body {
       border: none;
       width: 100px;
       font-size: 14px; }
+    .nav .myInfo p {
+      opacity: .1;
+      transition: all 0.8s;
+      transform: perspective(100px) rotateY(180deg) translateZ(24px) scale(0.5); }
   .nav .myLout {
     position: absolute;
     left: 0;
@@ -2776,6 +2777,15 @@ body {
 
 .nav-show {
   left: 0; }
+  .nav-show .myInfo p:nth-child(1) {
+    transition-delay: .8s;
+    transition: all 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .nav-show .myInfo p:nth-child(2) {
+    transition-delay: 1.55s;
+    transition: all 1.8s cubic-bezier(0, 0, 0.58, 1); }
+  .nav-show .myInfo p {
+    opacity: 1;
+    transform: perspective(100px) rotateY(0) translateZ(0) scale(1); }
 
 .barrage-wrap {
   position: absolute;
@@ -2813,3 +2823,178 @@ body {
   .post-barrage .send-btn-wrap {
     position: absolute;
     right: 0; }
+
+.paopao-wrap {
+  position: absolute; }
+
+.avatar {
+  overflow: none; }
+  .avatar .paopao {
+    left: -5px; }
+
+.paopao {
+  width: 45px;
+  height: 45px;
+  bottom: 0;
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+  position: relative; }
+  .paopao div, .paopao span {
+    position: absolute; }
+  .paopao .chewing {
+    width: 50px;
+    height: 50px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -20px;
+    box-shadow: inset 10px -6px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+    -webkit-animation: bounce 0.6s ease-in-out infinite;
+    animation: bounce 0.6s ease-in-out infinite; }
+    .paopao .chewing .eye {
+      background: #fff;
+      border-radius: 50%;
+      border-top: 1px solid #111; }
+      .paopao .chewing .eye span {
+        width: 2px;
+        height: 2px;
+        background: #232323;
+        border-radius: 2px; }
+      .paopao .chewing .eye.left {
+        top: 15px;
+        left: 10px;
+        width: 15px;
+        height: 14px;
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg); }
+        .paopao .chewing .eye.left span {
+          top: 7px;
+          left: 7.5px; }
+      .paopao .chewing .eye.right {
+        top: 17.5px;
+        right: 10px;
+        width: 10px;
+        height: 10px;
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg); }
+        .paopao .chewing .eye.right span {
+          top: 4.5px;
+          left: 3.5px; }
+    .paopao .chewing .mounth {
+      width: 8px;
+      height: 2px;
+      bottom: 10px;
+      background: #fff;
+      border-radius: 50% 50% 100% 100%; }
+    .paopao .chewing .arm {
+      width: 15px;
+      height: 16px;
+      bottom: 28px;
+      border-radius: 7px;
+      z-index: -1;
+      -webkit-animation: arm-bounce 0.7s ease-in infinite;
+      animation: arm-bounce 0.7s ease-in infinite; }
+      .paopao .chewing .arm.left {
+        left: -13px;
+        -webkit-transform: rotate(-20deg);
+        transform: rotate(-20deg); }
+      .paopao .chewing .arm.right {
+        right: -13px;
+        -webkit-transform: rotate(20deg);
+        transform: rotate(20deg); }
+  .paopao .shadow {
+    width: 35px;
+    height: 10px;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    background: #262227;
+    box-shadow: 0 0 5px #262227;
+    -webkit-animation: shadow 0.7s ease-in-out infinite;
+    animation: shadow 0.7s ease-in-out infinite;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s; }
+  .paopao#paopaoU {
+    z-index: 30; }
+    .paopao#paopaoU .chewing {
+      background: #908989; }
+    .paopao#paopaoU .mounth {
+      left: 22px; }
+    .paopao#paopaoU .arm {
+      background: #908989; }
+  .paopao#orange {
+    left: 31%;
+    z-index: 20;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1); }
+    .paopao#orange .chewing {
+      background: #f0a524;
+      -webkit-animation-delay: 0.2s;
+      animation-delay: 0.2s; }
+    .paopao#orange .mounth {
+      left: 37px;
+      -webkit-transform: rotate(5deg);
+      transform: rotate(5deg);
+      -webkit-animation: mounth 0.7s ease-in-out infinite;
+      animation: mounth 0.7s ease-in-out infinite; }
+    .paopao#orange .arm {
+      background: #f0a524; }
+  .paopao#blue {
+    left: 64%;
+    z-index: 20;
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4); }
+    .paopao#blue .chewing {
+      background: royalblue;
+      -webkit-animation-delay: 0.4s;
+      animation-delay: 0.4s; }
+    .paopao#blue .mounth {
+      left: 37px;
+      width: 20px;
+      height: 5px;
+      -webkit-transform: rotate(5deg);
+      transform: rotate(5deg);
+      -webkit-animation: mounth 0.7s ease-in-out infinite;
+      animation: mounth 0.7s ease-in-out infinite; }
+    .paopao#blue .arm {
+      background: royalblue; }
+
+@keyframes bounce {
+  0% {
+    bottom: 0; }
+  65% {
+    bottom: 8px; }
+  100% {
+    bottom: 0;
+    border-radius: 49% 47% 42% 40%/60% 60% 40% 40%; } }
+
+@keyframes arm-bounce {
+  0%, 100% {
+    bottom: 28px; }
+  33% {
+    bottom: 23px; }
+  40% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8); }
+  66% {
+    -webkit-transform: scale(1);
+    transform: scale(1); } }
+
+@keyframes shadow {
+  0%, 100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1); }
+  50% {
+    -webkit-transform: scaleX(0.9);
+    transform: scaleX(0.9); } }
+
+@keyframes mounth {
+  0%, 100% {
+    height: 4px;
+    border-radius: 50% 50% 100% 100%; }
+  50% {
+    height: 8px;
+    bottom: 17px;
+    border-radius: 30% 30% 100% 100%; } }
