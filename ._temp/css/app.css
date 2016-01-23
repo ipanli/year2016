@@ -2732,25 +2732,6 @@ body {
   color: #fff;
   padding: 0 10px; }
 
-.post-barrage {
-  position: relative; }
-  .post-barrage .input {
-    display: block;
-    height: 35px;
-    padding: 0 60px 0 10px; }
-  .post-barrage .send-btn-wrap {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: #6731D2;
-    color: #fff;
-    width: 60px;
-    height: 35px;
-    display: inline-block;
-    text-align: center;
-    line-height: 35px;
-    cursor: pointer; }
-
 .nav {
   position: absolute;
   z-index: 100;
@@ -2827,6 +2808,10 @@ body {
   right: 0;
   z-index: 20;
   background-color: #fff; }
+  .post-barrage .input {
+    display: block;
+    height: 35px;
+    padding: 0 60px 0 10px; }
   .post-barrage input {
     display: block;
     width: 100%;
@@ -2841,7 +2826,16 @@ body {
     box-sizing: border-box; }
   .post-barrage .send-btn-wrap {
     position: absolute;
-    right: 0; }
+    right: 0;
+    top: 0;
+    background-color: #6731D2;
+    color: #fff;
+    width: 60px;
+    height: 35px;
+    display: inline-block;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer; }
 
 .paopao-wrap {
   position: absolute; }

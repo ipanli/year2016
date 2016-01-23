@@ -32,6 +32,12 @@ function yuanSaoHtml(){
         PD(".container").fadeIn().html(str);
         
         
+        PD(".container").on('touchend',".avatar",function(e){
+            BarrageIn();
+            console.log(e)
+        });
+        
+        
         return str;
         
 }
@@ -155,7 +161,7 @@ function layerTelWind(){
 
 function ReaderBarrage(){
     
-    var str  = PD('<div class="post-barrage lightSpeedOut animated">'+
+    var str  = PD('<div class="post-barrage">'+
                 '<div class="input">'+
                  '<input id="reply-write" name="content" type="text" value="" placeholder="输入弹幕文字">'+
                  '</div>'+
@@ -165,9 +171,9 @@ function ReaderBarrage(){
                ' </div>');
     
     
-    PD("body").append(str);
+    PD(".app").append(str);
     
-    PD("body").on("touchend",".send-btn",function(){
+    PD(".app").on("touchend",".send-btn",function(){
         sedInputMsg();
     })
     

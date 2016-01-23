@@ -159,6 +159,8 @@ function barrageInit() {
 //弹幕文字推送
 
 function barragePush(msg){
+    
+
   
   var color = getReandomColor(),
       size = GetRandomNum(10,18);
@@ -169,6 +171,8 @@ function barragePush(msg){
   
   
   barrageInit();
+  
+ 
     
 }
 
@@ -176,8 +180,12 @@ function barragePush(msg){
 function sedInputMsg(){
   var msg  = PD("#reply-write").val();
   
+  if(msg){   
+      PD("#reply-write").val('');
+      barragePush(msg);   
+  }
    
-    barragePush(msg);
+   BarrageOut();
     
     
 }
@@ -185,13 +193,23 @@ function sedInputMsg(){
 
 function BarrageIn(){
     
-    PD(".post-barrage").removeClass('lightSpeedOut animated').addClass("lightSpeedIn animated");
+    PD(".foo-count-down").css({'zIndex':"10"});
+    
+    PD(".post-barrage").removeClass('zoomOut animated').addClass("zoomIn animated");
     
 }
 
 function BarrageOut(){
     
-    PD(".post-barrage").removeClass('lightSpeedIn animated').addClass("lightSpeedOut animated");
+ 
+    
+    
+    PD(".post-barrage").removeClass('zoomIn animated').addClass("zoomOut animated");
+    
+    
+    setTimeout(function(){
+           PD(".foo-count-down").css({'zIndex':"40"});
+    },500)
     
 }
 
@@ -403,6 +421,12 @@ function yuanSaoHtml(){
         PD(".container").fadeIn().html(str);
         
         
+        PD(".container").on('touchend',".avatar",function(e){
+            BarrageIn();
+            console.log(e)
+        });
+        
+        
         return str;
         
 }
@@ -526,7 +550,7 @@ function layerTelWind(){
 
 function ReaderBarrage(){
     
-    var str  = PD('<div class="post-barrage lightSpeedOut animated">'+
+    var str  = PD('<div class="post-barrage">'+
                 '<div class="input">'+
                  '<input id="reply-write" name="content" type="text" value="" placeholder="输入弹幕文字">'+
                  '</div>'+
@@ -536,9 +560,9 @@ function ReaderBarrage(){
                ' </div>');
     
     
-    PD("body").append(str);
+    PD(".app").append(str);
     
-    PD("body").on("touchend",".send-btn",function(){
+    PD(".app").on("touchend",".send-btn",function(){
         sedInputMsg();
     })
     
@@ -777,9 +801,7 @@ PD(function(){
     
     } 
     PD(".loader-inner").fadeOut("300",function(){
-       
-       yuanSaoHtml();
-       
+        PD(".container").fadeIn().html(yuanSaoHtml());
     });
     
     

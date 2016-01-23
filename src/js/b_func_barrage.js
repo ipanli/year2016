@@ -45,6 +45,8 @@ function barrageInit() {
 //弹幕文字推送
 
 function barragePush(msg){
+    
+
   
   var color = getReandomColor(),
       size = GetRandomNum(10,18);
@@ -55,6 +57,8 @@ function barragePush(msg){
   
   
   barrageInit();
+  
+ 
     
 }
 
@@ -62,8 +66,12 @@ function barragePush(msg){
 function sedInputMsg(){
   var msg  = PD("#reply-write").val();
   
+  if(msg){   
+      PD("#reply-write").val('');
+      barragePush(msg);   
+  }
    
-    barragePush(msg);
+   BarrageOut();
     
     
 }
@@ -71,12 +79,22 @@ function sedInputMsg(){
 
 function BarrageIn(){
     
-    PD(".post-barrage").removeClass('lightSpeedOut animated').addClass("lightSpeedIn animated");
+    PD(".foo-count-down").css({'zIndex':"10"});
+    
+    PD(".post-barrage").removeClass('zoomOut animated').addClass("zoomIn animated");
     
 }
 
 function BarrageOut(){
     
-    PD(".post-barrage").removeClass('lightSpeedIn animated').addClass("lightSpeedOut animated");
+ 
+    
+    
+    PD(".post-barrage").removeClass('zoomIn animated').addClass("zoomOut animated");
+    
+    
+    setTimeout(function(){
+           PD(".foo-count-down").css({'zIndex':"40"});
+    },500)
     
 }
