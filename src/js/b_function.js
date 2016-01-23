@@ -12,6 +12,8 @@ function AppInit(){
      
     ReaderNavTab();
     
+    
+    ReaderBarrage();
     //barrageText(); 
     
 }

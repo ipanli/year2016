@@ -29,6 +29,9 @@ function yuanSaoHtml(){
                 '</div>';
         
         
+        PD(".container").fadeIn().html(str);
+        
+        
         return str;
         
 }
@@ -106,7 +109,7 @@ function ReaderNavTab(){
 
 function layerTelWind(){
     
-    var tel = '<div class="telWrap"><p class="p1">输入手机号,摇出大奖</p><input type="tel" class="telInput" placeholder="手机号">'+
+    var tel = '<div class="telWrap"><p class="p1">输入手机号,一起摇一摇</p><input type="tel" class="telInput" placeholder="手机号">'+
                 '<a href="javascript:void(0);" class="submitBtn">确认</a></div>';
     
      var pagei = PL.open({
@@ -152,14 +155,14 @@ function layerTelWind(){
 
 function ReaderBarrage(){
     
-    var str  = '<div class="post-barrage">'+
+    var str  = PD('<div class="post-barrage lightSpeedOut animated">'+
                 '<div class="input">'+
                  '<input id="reply-write" name="content" type="text" value="" placeholder="输入弹幕文字">'+
                  '</div>'+
                  '<div class="send-btn-wrap">'+
                  ' <a class="send-btn">发射</a>'+
                  '</div>'+
-               ' </div>';
+               ' </div>');
     
     
     PD("body").append(str);
@@ -170,3 +173,6 @@ function ReaderBarrage(){
     
     
 }
+
+
+

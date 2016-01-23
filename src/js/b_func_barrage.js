@@ -67,3 +67,16 @@ function sedInputMsg(){
     
     
 }
+
+
+function BarrageIn(){
+    
+    PD(".post-barrage").removeClass('lightSpeedOut animated').addClass("lightSpeedIn animated");
+    
+}
+
+function BarrageOut(){
+    
+    PD(".post-barrage").removeClass('lightSpeedIn animated').addClass("lightSpeedOut animated");
+    
+}

@@ -182,6 +182,19 @@ function sedInputMsg(){
     
 }
 
+
+function BarrageIn(){
+    
+    PD(".post-barrage").removeClass('lightSpeedOut animated').addClass("lightSpeedIn animated");
+    
+}
+
+function BarrageOut(){
+    
+    PD(".post-barrage").removeClass('lightSpeedIn animated').addClass("lightSpeedOut animated");
+    
+}
+
 // 星球点点
 function  xingqiuCan(){
   var canvas = document.querySelector('canvas'),
@@ -387,6 +400,9 @@ function yuanSaoHtml(){
                 '</div>';
         
         
+        PD(".container").fadeIn().html(str);
+        
+        
         return str;
         
 }
@@ -464,7 +480,7 @@ function ReaderNavTab(){
 
 function layerTelWind(){
     
-    var tel = '<div class="telWrap"><p class="p1">输入手机号,摇出大奖</p><input type="tel" class="telInput" placeholder="手机号">'+
+    var tel = '<div class="telWrap"><p class="p1">输入手机号,一起摇一摇</p><input type="tel" class="telInput" placeholder="手机号">'+
                 '<a href="javascript:void(0);" class="submitBtn">确认</a></div>';
     
      var pagei = PL.open({
@@ -510,14 +526,14 @@ function layerTelWind(){
 
 function ReaderBarrage(){
     
-    var str  = '<div class="post-barrage">'+
+    var str  = PD('<div class="post-barrage lightSpeedOut animated">'+
                 '<div class="input">'+
                  '<input id="reply-write" name="content" type="text" value="" placeholder="输入弹幕文字">'+
                  '</div>'+
                  '<div class="send-btn-wrap">'+
                  ' <a class="send-btn">发射</a>'+
                  '</div>'+
-               ' </div>';
+               ' </div>');
     
     
     PD("body").append(str);
@@ -529,9 +545,12 @@ function ReaderBarrage(){
     
 }
 
+
+
+
 //摇一摇事件
 function PanshakYo(){
-        var speed = 25;
+        var speed = 35;
 		var audio = document.getElementById("shakemusic");
         var noPhone = document.getElementById("nophone");
 		var openAudio = document.getElementById("openmusic");
@@ -541,7 +560,11 @@ function PanshakYo(){
 		window.addEventListener('devicemotion',
 			function () {
                      
-
+                    
+                    if(!openSw){
+                            return false;
+                     }
+                    
                     var acceleration = event.accelerationIncludingGravity;
                     x = acceleration.x;
                     y = acceleration.y;
@@ -558,11 +581,7 @@ function PanshakYo(){
                              return;
                          }
                         
-                        if(!openSw){
-                            
-                            
-                            return false;
-                        }
+                        
                         
                         var maili = Math.abs(lastX.toFixed(0))+Math.abs(lastY.toFixed(0 ));
                             openSw = false;
@@ -586,7 +605,7 @@ function PanshakYo(){
                                     
                                     setTimeout(function(){
                                         openSw = true;
-                                    },2000);
+                                    },3000);
                                     
                                     
                                                               
@@ -651,11 +670,22 @@ function readerUser(num){
     
     var style = 'left:'+randomPosition().left+';top:'+randomPosition().top+';';
 
-    var str = '<span class="userSpan shadow" style="'+ style +'">'+
+    var str = '<span class="userSpan animated zoomIn" style="'+ style +'">'+
                     '<img src="./build/images/'+ num +'.jpg" width="100%">'+
                '</span>';
+               
+      
+     
+     
      
      PD(".userWrap").append(str);
+     
+     
+     setTimeout(function(){
+         PD(".userWrap span").last().addClass("shadow flip");
+     },1000)
+     
+     
      
      return str;
 }
@@ -673,6 +703,8 @@ function AppInit(){
      
     ReaderNavTab();
     
+    
+    ReaderBarrage();
     //barrageText(); 
     
 }
@@ -745,7 +777,9 @@ PD(function(){
     
     } 
     PD(".loader-inner").fadeOut("300",function(){
-        PD(".container").fadeIn().html(yuanSaoHtml());
+       
+       yuanSaoHtml();
+       
     });
     
     

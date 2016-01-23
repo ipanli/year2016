@@ -2349,7 +2349,7 @@ body {
 #audio_btn {
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
   z-index: 99;
   width: 24px;
   height: 25px;

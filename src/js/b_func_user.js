@@ -44,11 +44,22 @@ function readerUser(num){
     
     var style = 'left:'+randomPosition().left+';top:'+randomPosition().top+';';
 
-    var str = '<span class="userSpan shadow" style="'+ style +'">'+
+    var str = '<span class="userSpan animated zoomIn" style="'+ style +'">'+
                     '<img src="./build/images/'+ num +'.jpg" width="100%">'+
                '</span>';
+               
+      
+     
+     
      
      PD(".userWrap").append(str);
+     
+     
+     setTimeout(function(){
+         PD(".userWrap span").last().addClass("shadow flip");
+     },1000)
+     
+     
      
      return str;
 }

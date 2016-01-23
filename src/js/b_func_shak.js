@@ -1,6 +1,6 @@
 //摇一摇事件
 function PanshakYo(){
-        var speed = 25;
+        var speed = 35;
 		var audio = document.getElementById("shakemusic");
         var noPhone = document.getElementById("nophone");
 		var openAudio = document.getElementById("openmusic");
@@ -10,7 +10,11 @@ function PanshakYo(){
 		window.addEventListener('devicemotion',
 			function () {
                      
-
+                    
+                    if(!openSw){
+                            return false;
+                     }
+                    
                     var acceleration = event.accelerationIncludingGravity;
                     x = acceleration.x;
                     y = acceleration.y;
@@ -27,11 +31,7 @@ function PanshakYo(){
                              return;
                          }
                         
-                        if(!openSw){
-                            
-                            
-                            return false;
-                        }
+                        
                         
                         var maili = Math.abs(lastX.toFixed(0))+Math.abs(lastY.toFixed(0 ));
                             openSw = false;
@@ -55,7 +55,7 @@ function PanshakYo(){
                                     
                                     setTimeout(function(){
                                         openSw = true;
-                                    },2000);
+                                    },3000);
                                     
                                     
                                                               
